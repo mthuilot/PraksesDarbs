@@ -179,20 +179,23 @@ public class RegisterFrame {
                 char[] passwordTwo = regPassTextTwo.getPassword();
                 String passString = new String(password).trim();
                 String passStringTwo = new String(passwordTwo).trim();
-                if(!passString.equals(passStringTwo)){
-                    JOptionPane.showMessageDialog(null,"The passwords are not the same!", "Warning", JOptionPane.WARNING_MESSAGE);
+                if(username.isEmpty() || passString.isEmpty() || passStringTwo.isEmpty() || name.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Please fill all the containers!");
                 }else{
-                    try{
-                        FileWriter writer = new FileWriter("userinput.txt", true);
-                        writer.write(name + "," + username + "," + passString + "," + "\n");
-                        writer.close();
-                        registerMain.dispose();
-                        MainFrame mainFrame = new MainFrame();
-                    }catch(IOException ex){
-                        ex.printStackTrace();
+                    if(!passString.equals(passStringTwo)){
+                        JOptionPane.showMessageDialog(null,"The passwords are not the same!", "Warning", JOptionPane.WARNING_MESSAGE);
+                    }else{
+                        try{
+                            FileWriter writer = new FileWriter("userinput.txt", true);
+                            writer.write(name + "," + username + "," + passString + "," + "\n");
+                            writer.close();
+                            registerMain.dispose();
+                            MainFrame mainFrame = new MainFrame();
+                        }catch(IOException ex){
+                            ex.printStackTrace();
+                        }
                     }
                 }
-
             }
         });
 

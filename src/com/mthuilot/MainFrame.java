@@ -114,22 +114,27 @@ public class MainFrame {
                 String username = userText.getText();
                 char[] password = passText.getPassword();
                 String passString = new String(password);
-                try{
-                    BufferedReader reader = new BufferedReader(new FileReader("userinput.txt"));
-                    String line = reader.readLine();
-                    while (line !=null){
-                        String[] parts = line.split(",");
-                        if(username.equals(parts[1]) && passString.equals(parts[2])){
-                            JOptionPane.showMessageDialog(null, "Login successful!");
-                            return;
+                if(username.isEmpty() || passString.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Please fill all the containers or if you are new click register");
+                }else{
+                    try{
+                        BufferedReader reader = new BufferedReader(new FileReader("userinput.txt"));
+                        String line = reader.readLine();
+                        while (line !=null){
+                            String[] parts = line.split(",");
+                            if(username.equals(parts[1]) && passString.equals(parts[2])){
+                                JOptionPane.showMessageDialog(null, "Login successful!");
+                                return;
+                            }
+                            line = reader.readLine();
                         }
-                        line = reader.readLine();
+                        JOptionPane.showMessageDialog(null, "Invalid email or password.");
+                        reader.close();
+                    }catch (IOException ex) {
+                        ex.printStackTrace();
                     }
-                    JOptionPane.showMessageDialog(null, "Invalid email or password.");
-                    reader.close();
-                }catch (IOException ex) {
-                    ex.printStackTrace();
                 }
+
             }
         });
 
