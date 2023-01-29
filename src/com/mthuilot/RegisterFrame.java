@@ -152,6 +152,15 @@ public class RegisterFrame {
         regBack.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
         regBack.setOpaque(false);
         regBack.setContentAreaFilled(false);
+        regBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()==regBack){
+                    registerMain.dispose();
+                    MainFrame mainFrame = new MainFrame();
+                }
+            }
+        });
 
         JLabel regOrLab = new JLabel();
         regOrLab.setText("or");
