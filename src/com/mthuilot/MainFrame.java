@@ -121,6 +121,13 @@ public class MainFrame {
         registerBut.setBorder(BorderFactory.createEmptyBorder(5,0,5,5));
         registerBut.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
         registerBut.setAlignmentX(Container.RIGHT_ALIGNMENT);
+        registerBut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.dispose();
+                RegisterMain registerMain = new RegisterMain();
+            }
+        });
         registerBut.setOpaque(false);
         registerBut.setContentAreaFilled(false);
 
