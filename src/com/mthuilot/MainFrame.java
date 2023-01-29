@@ -3,163 +3,157 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 
-public class MainFrame extends JFrame {
+public class MainFrame {
     MainFrame(){
-        this.setTitle("Click buttons");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
-        this.setPreferredSize(new Dimension(700,500));
-        ImageIcon image = new ImageIcon("Rizz Academy-logos_black_resize");
-        this.setIconImage(image.getImage());
-        this.getContentPane().setBackground(new Color(0x5865F2));
+        JFrame mainFrame = new JFrame();
+        mainFrame.setTitle("Log-in or Register | Rizz Academy©");
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setResizable(false);
+        mainFrame.setPreferredSize(new Dimension(700,500));
+        ImageIcon mainImage = new ImageIcon("Rizz Academy-logos_black_resize");
+        mainFrame.setIconImage(mainImage.getImage());
+        mainFrame.getContentPane().setBackground(new Color(0x5865F2));
+        mainFrame.setLayout(new BoxLayout(mainFrame.getContentPane(), BoxLayout.Y_AXIS));
+        mainFrame.pack();
+        mainFrame.setLocationRelativeTo(null);
 
 
-        this.setVisible(true);
+        JPanel topPanel = new JPanel();
+        topPanel.setSize(700,50);
+        topPanel.setBackground(Color.red);
+        topPanel.setOpaque(false);
+
+        JLabel topImage = new JLabel();
+        ImageIcon imageIcon = new ImageIcon("Rizz Academy-logos_black_resize.png");
+        topImage.setIcon(imageIcon);
+        topImage.setHorizontalAlignment(JLabel.CENTER);
+        topImage.setVerticalAlignment(JLabel.CENTER);
+
+
+
+
+        JPanel userPanel = new JPanel();
+        userPanel.setSize(700,100);
+        userPanel.setBackground(Color.CYAN);
+        userPanel.setLayout(new BoxLayout(userPanel,BoxLayout.Y_AXIS));
+        userPanel.setOpaque(false);
+
+        JLabel userLabel = new JLabel();
+        userLabel.setText("username");
+        userLabel.setFont(new Font("Arial Rounded MT",Font.BOLD,18));
+        userLabel.setMaximumSize(new Dimension(90,40));
+        userLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        userLabel.setForeground(Color.white);
+
+        JTextField userText = new JTextField();
+        userText.setMaximumSize(new Dimension(300,30));
+        userText.setAlignmentX(Component.CENTER_ALIGNMENT);
+        userText.setFont(new Font("Arial Rounded MT", Font.BOLD, 18));
+        userText.setHorizontalAlignment(JButton.CENTER);
+        userText.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1, true));
+        userText.setOpaque(false);
+
+
+
+
+        JPanel passPanel = new JPanel();
+        passPanel.setSize(700,100);
+        passPanel.setBackground(Color.BLUE);
+        passPanel.setLayout(new BoxLayout(passPanel,BoxLayout.Y_AXIS));
+        passPanel.setOpaque(false);
+
+        JLabel passLabel = new JLabel();
+        passLabel.setText("password");
+        passLabel.setFont(new Font("Arial Rounded MT",Font.BOLD,18));
+        passLabel.setMaximumSize(new Dimension(90,40));
+        passLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        passLabel.setForeground(Color.white);
+
+        JTextField passText = new JTextField();
+        passText.setMaximumSize(new Dimension(300,30));
+        passText.setAlignmentX(Component.CENTER_ALIGNMENT);
+        passText.setFont(new Font("Arial Rounded MT", Font.BOLD, 18));
+        passText.setHorizontalAlignment(JButton.CENTER);
+        passText.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1, true));
+        passText.setOpaque(false);
+
+
+
+
+        JPanel emptyPanel = new JPanel();
+        emptyPanel.setSize(700,100);
+        emptyPanel.setBackground(Color.DARK_GRAY);
+        emptyPanel.setOpaque(false);
+
+
+
+
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setSize(700,100);
+        bottomPanel.setBackground(Color.GREEN);
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
+        bottomPanel.setOpaque(false);
+
+        JButton loginBut = new JButton();
+        loginBut.setText("log-in");
+        loginBut.setFocusable(false);
+        loginBut.setMaximumSize(new Dimension(270,30));
+        loginBut.setFont(new Font("Arial Rounded MT", Font.BOLD,18));
+        loginBut.setBorder(BorderFactory.createEmptyBorder(5,15,5,0));
+        loginBut.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+        loginBut.setAlignmentX(Container.LEFT_ALIGNMENT);
+        loginBut.setOpaque(false);
+        loginBut.setContentAreaFilled(false);
+
+        JLabel orLabel = new JLabel();
+        orLabel.setText("or");
+        orLabel.setMaximumSize(new Dimension(50,40));
+        orLabel.setFont(new Font("Arial Rounded MT", Font.BOLD,18));
+        orLabel.setAlignmentX(Container.CENTER_ALIGNMENT);
+        orLabel.setBorder(BorderFactory.createEmptyBorder(5,15,5,5));
+
+        JButton registerBut = new JButton();
+        registerBut.setText("register");
+        registerBut.setFocusable(false);
+        registerBut.setMaximumSize(new Dimension(270,30));
+        registerBut.setFont(new Font("Arial Rounded MT", Font.BOLD,18));
+        registerBut.setBorder(BorderFactory.createEmptyBorder(5,0,5,5));
+        registerBut.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+        registerBut.setAlignmentX(Container.RIGHT_ALIGNMENT);
+        registerBut.setOpaque(false);
+        registerBut.setContentAreaFilled(false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        mainFrame.add(topPanel);
+        mainFrame.add(userPanel);
+        mainFrame.add(passPanel);
+        mainFrame.add(emptyPanel);
+        mainFrame.add(bottomPanel);
+        topPanel.add(topImage);
+        userPanel.add(userLabel);
+        userPanel.add(userText);
+        passPanel.add(passLabel);
+        passPanel.add(passText);
+        bottomPanel.add(loginBut);
+        bottomPanel.add(orLabel);
+        bottomPanel.add(registerBut);
+        mainFrame.setVisible(true);
+
     }
-    public static class TopPanel extends JPanel {
-        TopPanel() {
 
-            this.setSize(700,50);
-            this.setOpaque(false);
-
-
-
-        }
-        public static class MainIcon extends JLabel{
-            MainIcon(){
-                ImageIcon imageIcon = new ImageIcon("Rizz Academy-logos_black_resize.png");
-                this.setIcon(imageIcon);
-                this.setHorizontalAlignment(JLabel.CENTER);
-                this.setVerticalAlignment(JLabel.CENTER);
-            }
-        }
-    }
-    public static class UserPanel extends JPanel {
-
-
-        UserPanel() {
-            this.setSize(700, 100);
-           this.setOpaque(false);
-            this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-
-
-        }
-        public static class UserLabel extends JLabel{
-            UserLabel(){
-                this.setText("username");
-                this.setFont(new Font("Arial Rounded MT",Font.BOLD,18));
-                this.setMaximumSize(new Dimension(90,40));
-                this.setAlignmentX(Component.CENTER_ALIGNMENT);
-                this.setForeground(Color.white);
-
-            }
-        }
-        public static class UserText extends JTextField {
-            UserText() {
-                this.setMaximumSize(new Dimension(300,30));
-                this.setAlignmentX(Component.CENTER_ALIGNMENT);
-                this.setFont(new Font("Arial Rounded MT", Font.BOLD, 18));
-                this.setHorizontalAlignment(JButton.CENTER);
-                this.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1, true));
-                this.setOpaque(false);
-
-
-
-            }
-        }
-        }
-    public static class PassPanel extends JPanel {
-        PassPanel(){
-            this.setSize(700,100);
-            this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-            this.setOpaque(false);
-
-
-        }
-        public static class PassLabel extends JLabel{
-            PassLabel(){
-                this.setText("password");
-                this.setFont(new Font("Arial Rounded MT",Font.BOLD,18));
-                this.setMaximumSize(new Dimension(90,40));
-                this.setAlignmentX(Component.CENTER_ALIGNMENT);
-                this.setForeground(Color.white);
-            }
-        }
-        public static class PassText extends JTextField {
-            PassText() {
-                this.setMaximumSize(new Dimension(300,30));
-                this.setAlignmentX(Component.CENTER_ALIGNMENT);
-                this.setFont(new Font("Arial Rounded MT", Font.BOLD, 18));
-                this.setHorizontalAlignment(JButton.CENTER);
-                this.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1, true));
-                this.setOpaque(false);
-            }
-        }
-    }
-
-    public static class EmptyPanel extends JPanel {
-        EmptyPanel(){
-            this.setOpaque(false);
-            //this is a empty panel
-        }
-    }
-    public static class BottomPanel extends JPanel {
-
-        BottomPanel(){
-            this.setSize(700,100);
-            this.setOpaque(false);
-
-            this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        }
-        public static class LoginButton extends JButton {
-            LoginButton(){
-                this.setText("log-in");
-                this.setFocusable(false);
-                this.setMaximumSize(new Dimension(270,30));
-                this.setFont(new Font("Arial Rounded MT", Font.BOLD,18));
-                this.setBorder(BorderFactory.createEmptyBorder(5,15,5,0));
-                this.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-                this.setAlignmentX(Container.LEFT_ALIGNMENT);
-                this.setOpaque(false);
-                this.setContentAreaFilled(false);
-            }
-        }
-
-        public static class OrLabel extends JLabel {
-            OrLabel(){
-                this.setText("or");
-                this.setMaximumSize(new Dimension(50,40));
-                this.setFont(new Font("Arial Rounded MT", Font.BOLD,18));
-                this.setAlignmentX(Container.CENTER_ALIGNMENT);
-                this.setBorder(BorderFactory.createEmptyBorder(5,15,5,5));
-            }
-        }
-
-
-        public static class RegisterButton extends JButton implements ActionListener {
-                RegisterButton(){
-                    this.setText("register");
-                    this.setFocusable(false);
-                    this.setMaximumSize(new Dimension(270,30));
-                    this.setFont(new Font("Arial Rounded MT", Font.BOLD,18));
-                    this.setBorder(BorderFactory.createEmptyBorder(5,0,5,5));
-                    this.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-                    this.setAlignmentX(Container.RIGHT_ALIGNMENT);
-                    this.addActionListener(this);
-                    this.setOpaque(false);
-                    this.setContentAreaFilled(false);
-                }
-
-                @Override
-            public void actionPerformed(ActionEvent e) {
-                if(e.getSource()==this) {
-
-                        RegisterMain registerMain = new RegisterMain();
-
-                }
-            }
-        }
-    }
 }
+
+
