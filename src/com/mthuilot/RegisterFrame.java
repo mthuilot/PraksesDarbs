@@ -2,13 +2,17 @@ package com.mthuilot;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class RegisterFrame {
     RegisterFrame(){
         JFrame registerMain = new JFrame();
         registerMain.setTitle("Register | Rizz Academy©");
         registerMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon image = new ImageIcon("Rizz Academy-logos_black_resize");
+        ImageIcon image = new ImageIcon("Rizz Academy-logos_black_resize.png");
         registerMain.setIconImage(image.getImage());
         registerMain.setPreferredSize(new Dimension(500, 800));
         registerMain.getContentPane().setBackground(new Color(0x5865F2));
@@ -74,6 +78,12 @@ public class RegisterFrame {
         regUserText.setMaximumSize(new Dimension(300,30));
         regUserText.setHorizontalAlignment(JTextField.CENTER);
         regUserText.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1, true));
+        regUserText.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = regUserText.getText();
+            }
+        });
         regUserText.setOpaque(false);
 
 
@@ -92,7 +102,7 @@ public class RegisterFrame {
         regPassLab.setHorizontalAlignment(JLabel.CENTER);
         regPassLab.setForeground(Color.white);
 
-        JTextField regPassText = new JTextField();
+        JPasswordField regPassText = new JPasswordField();
         regPassText.setMaximumSize(new Dimension(300,30));
         regPassText.setAlignmentX((Component.CENTER_ALIGNMENT));
         regPassText.setFont(new Font("Arial Rounded MT",Font.BOLD, 18));
@@ -116,7 +126,7 @@ public class RegisterFrame {
         regPassLabTwo.setHorizontalAlignment(JLabel.CENTER);
         regPassLabTwo.setForeground(Color.white);
 
-        JTextField regPassTextTwo = new JTextField();
+        JPasswordField regPassTextTwo = new JPasswordField();
         regPassTextTwo.setMaximumSize(new Dimension(300,30));
         regPassTextTwo.setAlignmentX((Component.CENTER_ALIGNMENT));
         regPassTextTwo.setFont(new Font("Arial Rounded MT",Font.BOLD, 18));
@@ -160,6 +170,31 @@ public class RegisterFrame {
         regDone.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
         regDone.setOpaque(false);
         regDone.setContentAreaFilled(false);
+        regDone.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = regNameText.getText().trim();
+                String username = regUserText.getText().trim();
+                char[] password = regPassText.getPassword();
+                char[] passwordTwo = regPassTextTwo.getPassword();
+                String passString = new String(password).trim();
+                String passStringTwo = new String(passwordTwo).trim();
+                if(!passString.equals(passStringTwo)){
+                    JOptionPane.showMessageDialog(null,"The passwords are not the same!", "Warning", JOptionPane.WARNING_MESSAGE);
+                }else{
+                    try{
+                        FileWriter writer = new FileWriter("userinput.txt", true);
+                        writer.write(name + "," + username + "," + passString + "," + "\n");
+                        writer.close();
+                        registerMain.dispose();
+                        MainFrame mainFrame = new MainFrame();
+                    }catch(IOException ex){
+                        ex.printStackTrace();
+                    }
+                }
+
+            }
+        });
 
 
 

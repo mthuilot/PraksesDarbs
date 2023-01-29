@@ -3,6 +3,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class MainFrame {
     MainFrame(){
@@ -11,7 +14,7 @@ public class MainFrame {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setResizable(false);
         mainFrame.setPreferredSize(new Dimension(700,500));
-        ImageIcon mainImage = new ImageIcon("Rizz Academy-logos_black_resize");
+        ImageIcon mainImage = new ImageIcon("Rizz Academy-logos_black_resize.png");
         mainFrame.setIconImage(mainImage.getImage());
         mainFrame.getContentPane().setBackground(new Color(0x5865F2));
         mainFrame.setLayout(new BoxLayout(mainFrame.getContentPane(), BoxLayout.Y_AXIS));
@@ -70,7 +73,7 @@ public class MainFrame {
         passLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         passLabel.setForeground(Color.white);
 
-        JTextField passText = new JTextField();
+        JPasswordField passText = new JPasswordField();
         passText.setMaximumSize(new Dimension(300,30));
         passText.setAlignmentX(Component.CENTER_ALIGNMENT);
         passText.setFont(new Font("Arial Rounded MT", Font.BOLD, 18));
@@ -105,6 +108,30 @@ public class MainFrame {
         loginBut.setAlignmentX(Container.LEFT_ALIGNMENT);
         loginBut.setOpaque(false);
         loginBut.setContentAreaFilled(false);
+        loginBut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = userText.getText();
+                char[] password = passText.getPassword();
+                String passString = new String(password);
+                try{
+                    BufferedReader reader = new BufferedReader(new FileReader("userinput.txt"));
+                    String line = reader.readLine();
+                    while (line !=null){
+                        String[] parts = line.split(",");
+                        if(username.equals(parts[1]) && passString.equals(parts[2])){
+                            JOptionPane.showMessageDialog(null, "Login successful!");
+                            return;
+                        }
+                        line = reader.readLine();
+                    }
+                    JOptionPane.showMessageDialog(null, "Invalid email or password.");
+                    reader.close();
+                }catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
         JLabel orLabel = new JLabel();
         orLabel.setText("or");
