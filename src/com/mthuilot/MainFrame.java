@@ -128,7 +128,7 @@ public class MainFrame {
                             }
                             line = reader.readLine();
                         }
-                        JOptionPane.showMessageDialog(null, "Invalid email or password.");
+                        JOptionPane.showMessageDialog(null, "Invalid username or password.");
                         reader.close();
                     }catch (IOException ex) {
                         ex.printStackTrace();
